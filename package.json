@@ -1,0 +1,38 @@
+{
+  "name": "sanger-ui",
+  "version": "0.1.0",
+  "author": "Moritz E. Beber",
+  "description": "Automated Sanger sequencing analysis interface.",
+  "license": "ISC",
+  "private": true,
+  "babel": {
+    "presets": [
+      "mobx"
+    ]
+  },
+  "dependencies": {
+    "custom-react-scripts": "0.2.2",
+    "material-ui": "^1.0.0-beta.38",
+    "material-ui-icons": "^1.0.0-beta.36",
+    "mobx": "^4.1.0",
+    "mobx-react": "^5.0.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-dropzone-component": "^3.1.2",
+    "typeface-roboto": "0.0.54"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-mobx": "^1.0.2",
+    "babel-preset-react": "^6.24.1",
+    "mobx-devtools": "^0.9.14",
+    "mobx-react-devtools": "^5.0.1"
+  }
+}
