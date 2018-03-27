@@ -6,5 +6,5 @@ import {configure} from 'mobx';
 
 configure({enforceActions: true, computedRequiresReaction: true});
 
-ReactDOM.render(<App/>, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();

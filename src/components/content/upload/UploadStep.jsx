@@ -1,7 +1,9 @@
 import React from 'react';
-import {DropzoneComponent} from 'react-dropzone-component';
+import {action} from 'mobx';
+import {observer} from 'mobx-react';
+import Dropzone from 'react-dropzone';
 import {withStyles} from 'material-ui/styles';
-import Button from 'material-ui/Button';
+import fileStore from '../../../stores/FileStore';
 
 const styles = theme => ({
   button: {
@@ -12,55 +14,36 @@ const styles = theme => ({
   },
 });
 
+@observer
 class UploadStep extends React.Component {
-  constructor(props) {
-    super(props);
-    // For a full list of possible configurations,
-    // please consult http://www.dropzonejs.com/#configuration
-    this.djsConfig = {
-      addRemoveLinks: true,
-      acceptedFiles: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,application/zip,application/octet-stream",
-      autoProcessQueue: false
-    };
+  fileStore = fileStore;
 
-    this.componentConfig = {
-      iconFiletypes: ['.xlsx', '.xls', '.zip'],
-      showFiletypeIcon: true,
-      postUrl: 'http://localhost:8000/samples',
-      dropzoneSelector: 'div#indazone'
-    };
-
-    this.dropzone = null;
-    this.handlePost = this.handlePost.bind(this);
-    this.handleFileAdded = this.handleFileAdded.bind(this);
-  }
-
-  handleFileAdded(file) {
-    console.log(file);
-  }
-
-  handlePost() {
-    this.dropzone.processQueue();
-  }
+  @action
+  onDrop = (accepted, rejected) => {
+    accepted.map((file) => {
+      if (file.type === 'application/zip' || file.type === 'application/octet-stream') {
+        this.fileStore.sequences = file;
+      } else {
+        this.fileStore.template = file;
+      }
+    });
+    // Flash an error message or something.
+    console.log(rejected);
+  };
 
   render() {
     const {classes} = this.props;
-    const config = this.componentConfig;
-    const djsConfig = this.djsConfig;
-
-    // For a list of all possible events (there are many), see README.md!
-    const eventHandlers = {
-      init: (dz) => {
-        this.dropzone = dz
-      },
-      addedfile: this.handleFileAdded
-    };
 
     return (
-      <div id="indazone" style={{ width: 800, height: 400, borderWidth: 'thin', borderColor: 'grey', borderStyle: 'dotted' }}>
-        <DropzoneComponent config={config} eventHandlers={eventHandlers} djsConfig={djsConfig}/>
-        <Button variant="raised" onClick={this.handlePost} className={classes.button}>Upload</Button>
-      </div>
+      <Dropzone
+        accept={
+          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,' +
+          'application/vnd.ms-excel,' +
+          'application/zip,' +
+          'application/octet-stream'
+        }
+        onDrop={this.onDrop}
+      />
     );
   }
 }
