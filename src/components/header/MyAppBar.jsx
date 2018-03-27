@@ -22,18 +22,14 @@ const styles = {
 class MyAppBar extends React.Component {
   static propTypes = {classes: PropTypes.object.isRequired};
 
-  constructor(props) {
-    super(props);
-    this.classes = props.classes;
-  }
-
   render() {
+    const {classes} = this.props;
     return (
-      <div className={this.classes.root}>
+      <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
             <img src={logo} alt="Automated Sanger sequence analysis" height="50em"/>
-            <Typography variant="title" color="inherit" className={this.classes.flex}>
+            <Typography variant="title" color="inherit" className={classes.flex}>
               Automated Sanger Sequence Analysis
             </Typography>
           </Toolbar>

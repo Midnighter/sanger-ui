@@ -13,11 +13,7 @@ const styles = {};
 
 @observer
 class SampleDialog extends React.Component {
-  constructor(props) {
-    super(props);
-    this.uiStore = uiStore;
-    this.onClose = this.uiStore.closeSampleDialog.bind(this.uiStore);
-  }
+  uiStore = uiStore;
 
   render() {
     if (typeof this.uiStore.sampleDialog.sample === 'undefined') {
@@ -26,7 +22,7 @@ class SampleDialog extends React.Component {
     return (
       <Dialog
         open={this.uiStore.sampleDialog.open}
-        onClose={this.onClose}
+        onClose={(...args) => this.uiStore.closeSampleDialog(...args)}
         aria-labelledby="sample-dialog-title"
       >
         <DialogTitle id="sample-dialog-title">

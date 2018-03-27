@@ -33,29 +33,19 @@ class PlasmidCardAction extends React.Component {
     classes: PropTypes.object.isRequired,
     index: PropTypes.number.isRequired
   };
-
-  constructor(props) {
-    super(props);
-    this.idx = this.props.index;
-    this.uiStore = uiStore;
-    this.onClick = this.onClick.bind(this);
-  }
-
-  onClick() {
-    this.uiStore.onToggle(this.idx);
-  }
+  uiStore = uiStore;
 
   render() {
-    const {classes} = this.props;
+    const {classes, index} = this.props;
     return (
       <CardActions className={classes.actions} disableActionSpacing>
         <Typography>Sequencing Details</Typography>
         <IconButton
           className={classnames(classes.expand, {
-            [classes.expandOpen]: !this.uiStore.cards[this.idx].collapsed,
+            [classes.expandOpen]: !this.uiStore.cards[index].collapsed,
           })}
-          onClick={this.onClick}
-          aria-expanded={!this.uiStore.cards[this.idx].collapsed}
+          onClick={(...args) => this.uiStore.onToggle(index)}
+          aria-expanded={!this.uiStore.cards[index].collapsed}
           aria-label="Show more"
         >
           <ExpandMoreIcon/>

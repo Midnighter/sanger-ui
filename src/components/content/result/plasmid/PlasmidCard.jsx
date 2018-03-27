@@ -7,7 +7,7 @@ import Card from 'material-ui/Card';
 import Collapse from 'material-ui/transitions/Collapse';
 
 import uiStore from '../../../../stores/UIStore';
-import plasmids from '../../../../stores/PlasmidStore';
+import plasmidStore from '../../../../stores/PlasmidStore';
 import PlasmidCardHeader from './PlasmidCardHeader';
 import PlasmidCardAction from './PlasmidCardAction';
 import PlasmidCardContent from './PlasmidCardContent';
@@ -34,17 +34,13 @@ class PlasmidCard extends React.Component {
     classes: PropTypes.object.isRequired,
     index: PropTypes.number.isRequired
   };
-
-  constructor(props) {
-    super(props);
-    this.uiStore = uiStore;
-    this.store = plasmids;
-  }
+  uiStore = uiStore;
+  plasmidStore = plasmidStore;
 
   render() {
     const {classes} = this.props;
     // Local reference makes this unreactive but PlasmidModel is static.
-    const plasmid = this.store.plasmids
+    const plasmid = this.plasmidStore.plasmids
       .get(this.uiStore.cards[this.props.index].plasmidID);
     return (
       <Card

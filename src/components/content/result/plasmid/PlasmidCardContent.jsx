@@ -26,13 +26,12 @@ class PlasmidCardContent extends React.Component {
   };
 
   render() {
-    const {classes} = this.props;
-    const idx = this.props.index;
+    const {classes, index} = this.props;
     return (
       <CardContent>
           <Table className={classes.table}>
             <SampleTableHead/>
-            <SampleTableBody index={idx}/>
+            <SampleTableBody index={index}/>
           </Table>
       </CardContent>
     );

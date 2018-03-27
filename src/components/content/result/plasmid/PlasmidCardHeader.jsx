@@ -9,9 +9,6 @@ import blue from 'material-ui/colors/blue';
 import red from 'material-ui/colors/red';
 import orange from 'material-ui/colors/orange';
 
-import uiStore from '../../../../stores/UIStore';
-import plasmids from '../../../../stores/PlasmidStore';
-
 const styles = theme => ({
   unresolved: {
     margin: 10,
@@ -40,17 +37,11 @@ class PlasmidCardHeader extends React.Component {
     plasmid: PropTypes.object.isRequired
   };
 
-  constructor(props) {
-    super(props);
-    this.uiStore = uiStore;
-    this.store = plasmids;
-  }
-
   render() {
     const {classes, plasmid} = this.props;
     return (
       <CardHeader
-        title={'Plasmid ' + plasmid.id}
+        title={'Plasmid ' + plasmid.id + ': ' + plasmid.name}
         action={
           <div className={classes.row}>
             {

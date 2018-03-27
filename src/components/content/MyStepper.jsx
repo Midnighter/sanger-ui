@@ -99,11 +99,11 @@ class MyStepper extends React.Component {
               {getStepContent(activeStep)}
               <div>
                 {/*<Button*/}
-                  {/*disabled={activeStep === 0}*/}
-                  {/*onClick={this.handleBack}*/}
-                  {/*className={classes.button}*/}
+                {/*disabled={activeStep === 0}*/}
+                {/*onClick={this.handleBack}*/}
+                {/*className={classes.button}*/}
                 {/*>*/}
-                  {/*Back*/}
+                {/*Back*/}
                 {/*</Button>*/}
                 <Button
                   variant="raised"

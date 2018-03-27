@@ -2,14 +2,16 @@ import SampleModel from './SampleModel';
 
 class PlasmidModel {
   id: string;
+  name: string;
   samples: SampleModel[];
   unresolved: integer;
   potential: integer;
   resolved: integer;
 
-  constructor(identifier: string, samples: SampleModel[],
+  constructor(identifier: string, name:string, samples: SampleModel[],
               unresolved?: integer, potential?: integer, resolved?: integer) {
     this.id = identifier;
+    this.name = name;
     this.samples = samples.slice();
     if (typeof unresolved === 'undefined') {
       this.unresolved = this.samples

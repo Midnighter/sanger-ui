@@ -5,7 +5,7 @@ class PlasmidStore {
 
   @action
   clear() {
-    this.store.clear();
+    this.plasmids.clear();
   }
 }
 
