@@ -20,20 +20,21 @@ class UploadStep extends React.Component {
 
   @action
   onDrop = (accepted, rejected) => {
-    accepted.map((file) => {
-      if (file.type === 'application/zip' || file.type === 'application/octet-stream') {
+    for (let file of accepted) {
+      if (file.type === 'application/zip'
+        || file.type === 'application/octet-stream') {
         this.fileStore.sequences = file;
       } else {
         this.fileStore.template = file;
       }
-    });
-    // Flash an error message or something.
-    console.log(rejected);
+    }
+    for (let file of rejected) {
+      // Flash an error message or something.
+      console.log(file);
+    }
   };
 
   render() {
-    const {classes} = this.props;
-
     return (
       <Dropzone
         accept={

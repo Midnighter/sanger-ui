@@ -20,8 +20,8 @@ class FileStore {
       .post(process.env.REACT_APP_UPLOAD_URL)
       .accept('application/json')
       .timeout({
-        response: 5000,  // Wait 5 s for the server to respond
-        deadline: 30000, // and allow 30 s for the files to finish uploading.
+        response: 60000,  // Wait 60 s for the server to respond.
+        deadline: 60000, // Allow 5 s for the files to finish uploading.
       })
       .attach('template', this.template)
       .attach('sequences', this.sequences)
